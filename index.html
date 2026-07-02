@@ -2,8 +2,79 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>متجر ألعاب الأطفال - الرئيسية</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body{
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-size: 18px; /* الخط العام كبر */
+      line-height: 1.8;
+      margin: 0;
+      background: #f9f9ff;
+    }
+    header{
+      background: #ff6b81;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo{
+      font-size: 28px; /* شعار اكبر */
+      font-weight: bold;
+    }
+    nav a{
+      color: white;
+      text-decoration: none;
+      font-size: 18px; /* روابط اكبر */
+      margin: 0 12px;
+      font-weight: bold;
+    }
+    nav a.active, nav a:hover{
+      text-decoration: underline;
+    }
+    .container{
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1{
+      font-size: 42px; /* العنوان كبير جدا */
+      color: #ff6b81;
+      margin-bottom: 20px;
+    }
+    p{
+      font-size: 22px; /* النص التعريفي كبر */
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .btn{
+      display: inline-block;
+      background: #ff6b81;
+      color: white;
+      padding: 16px 30px;
+      font-size: 20px; /* الزر خطو كبير */
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover{
+      background: #ff4757;
+    }
+    footer{
+      background: #ff6b81;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 18px; /* الفوتر اكبر */
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -19,12 +90,10 @@
 
   <div class="container">
     <h1>مرحباً بكم في متجر ألعاب الأطفال</h1>
-    <p style="text-align:center; font-size:18px;">أفضل الألعاب التعليمية والترفيهية للأطفال من عمر 0 إلى 12 سنة</p>
+    <p>أفضل الألعاب التعليمية والترفيهية للأطفال من عمر 0 إلى 12 سنة</p>
     <div style="text-align:center; margin-top:20px;">
       <a href="products.html" class="btn">تسوق الآن</a>
     </div>
   </div>
 
-  <footer>© 2026 ToyLand - جميع الحقوق محفوظة</footer>
-</body>
-</html>
+  <footer>© 2026 ToyLand - جميع
