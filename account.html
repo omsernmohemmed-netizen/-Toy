@@ -5,13 +5,203 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>حسابي - ToyLand</title>
   <style>
-    *{margin:0; padding:0; box-sizing:border-box}
-    body{
-      font-family: 'Tahoma', sans-serif;
-      font-size: 20px; /* الخط العام كبير */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tahoma', 'Arial', sans-serif;
+      font-size: 16px;
       background: #fff5f7;
       color: #333;
       line-height: 1.8;
     }
-    header{
-      background: linear-gradient(135deg, #ff6b81, #ff475
+    
+    header {
+      background: linear-gradient(135deg, #ff6b81, #ff4757);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    
+    .profile-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ff6b81;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+    }
+    
+    .profile-info h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+      color: #ff6b81;
+    }
+    
+    .profile-info p {
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      background: #ff6b81;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    
+    button:hover {
+      background: #ff4757;
+    }
+    
+    button.secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+    
+    button.secondary:hover {
+      background: #d0d0d0;
+    }
+    
+    .info-box {
+      background: #f9f9f9;
+      padding: 15px;
+      border-right: 4px solid #ff6b81;
+      margin-bottom: 15px;
+      border-radius: 4px;
+    }
+    
+    .info-box label {
+      font-weight: bold;
+      color: #ff6b81;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .info-box p {
+      color: #666;
+    }
+    
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎀 حسابي - ToyLand</h1>
+  </header>
+  
+  <div class="container">
+    <div class="profile-section">
+      <div class="profile-header">
+        <div class="profile-avatar">👧</div>
+        <div class="profile-info">
+          <h2>فاطمة محمد</h2>
+          <p>البريد الإلكتروني: fatima@example.com</p>
+          <p>رقم العضوية: #12345</p>
+          <div class="btn-group">
+            <button>تعديل الملف الشخصي</button>
+            <button class="secondary">تغيير كلمة المرور</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="profile-section">
+      <h3 style="margin-bottom: 15px; color: #ff6b81;">معلومات الحساب</h3>
+      
+      <div class="info-box">
+        <label>🎂 تاريخ الميلاد</label>
+        <p>15 مايو 2010</p>
+      </div>
+      
+      <div class="info-box">
+        <label>📍 المدينة</label>
+        <p>القاهرة</p>
+      </div>
+      
+      <div class="info-box">
+        <label>📱 رقم الهاتف</label>
+        <p>+201234567890</p>
+      </div>
+      
+      <div class="info-box">
+        <label>📅 تاريخ الانضمام</label>
+        <p>1 يناير 2024</p>
+      </div>
+    </div>
+    
+    <div class="profile-section">
+      <h3 style="margin-bottom: 15px; color: #ff6b81;">🎁 مشترياتك</h3>
+      <p style="color: #666; margin-bottom: 15px;">عدد المشتريات: 12 منتج</p>
+      <button>عرض سجل المشتريات</button>
+    </div>
+    
+    <div class="profile-section">
+      <h3 style="margin-bottom: 15px; color: #ff6b81;">⭐ نقاطك</h3>
+      <p style="color: #666; margin-bottom: 15px;">لديك <strong>850 نقطة</strong> يمكنك استخدامها للحصول على عروض خاصة!</p>
+      <button>استعرض العروض</button>
+    </div>
+    
+    <div class="profile-section">
+      <div class="btn-group">
+        <button class="secondary">تسجيل الخروج</button>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2024 ToyLand - جميع الحقوق محفوظة</p>
+  </footer>
+</body>
+</html>
