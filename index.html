@@ -3,73 +3,308 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر ألعاب الأطفال - الرئيسية</title>
+  <title>متجر ألعاب الأطفال - ToyLand</title>
   <style>
-    *{margin:0; padding:0; box-sizing:border-box}
-    body{
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      font-size: 20px; /* الخط العام كبير */
-      line-height: 1.8;
-      background: #fff5f7;
-      color: #333;
-      text-align: center;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    header{
-      background: #ff6b81;
-      color: white;
-      padding: 25px 15px;
+
+    :root {
+      --primary: #ff6b81;
+      --secondary: #ffa502;
+      --accent: #4ecdc4;
+      --dark: #2d3436;
+      --light: #636e72;
+      --bg-light: #fff5f7;
+      --white: #ffffff;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .logo{
-      font-size: 32px; /* شعار كبير جدا */
-      font-weight: bold;
+
+    body {
+      font-family: 'Segoe UI', 'Cairo', Tahoma, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #fff5f7 0%, #f0e6ff 50%, #e0f4ff 100%);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== الرأس ===== */
+    header {
+      background: linear-gradient(135deg, #ff6b81 0%, #ff5a70 50%, #ffa502 100%);
+      color: var(--white);
+      padding: 20px 15px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
       margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1px;
     }
-    nav a{
-      color: white;
+
+    /* ===== التنقل ===== */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    nav a {
+      color: var(--white);
       text-decoration: none;
-      font-size: 20px; /* الروابط كبرت */
-      margin: 0 10px;
-      font-weight: bold;
-      display: inline-block;
-      padding: 8px;
+      font-size: 15px;
+      padding: 10px 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.1);
     }
-    nav a.active{
-      border-bottom: 3px solid white;
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
     }
-    .container{
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 20px;
+
+    nav a.active {
+      background: rgba(255, 255, 255, 0.35);
+      border-bottom: 3px solid var(--white);
     }
-    h1{
-      font-size: 48px; /* العنوان ضخم */
-      color: #ff6b81;
-      margin-bottom: 25px;
-      line-height: 1.3;
+
+    /* ===== المحتوى ===== */
+    .container {
+      flex: 1;
+      max-width: 850px;
+      margin: 50px auto;
+      padding: 50px 30px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(255, 107, 129, 0.2);
+      border: 2px solid rgba(255, 107, 129, 0.1);
     }
-    p{
-      font-size: 24px; /* النص كبير ومريح */
-      color: #555;
-      margin-bottom: 35px;
+
+    h1 {
+      font-size: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      font-weight: 800;
     }
-    .btn{
-      display: inline-block;
-      background: #ff6b81;
-      color: white;
-      padding: 18px 40px;
-      font-size: 22px; /* الزر كبير */
-      font-weight: bold;
-      border-radius: 15px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(255,107,129,0.3);
+
+    p {
+      font-size: 18px;
+      color: var(--light);
+      margin-bottom: 30px;
+      line-height: 1.9;
+      font-weight: 500;
     }
-    footer{
-      background: #ff6b81;
-      color: white;
+
+    /* ===== البطاقات المميزة ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin: 35px 0;
+    }
+
+    .feature-box {
+      background: linear-gradient(135deg, rgba(255, 107, 129, 0.08) 0%, rgba(255, 165, 2, 0.08) 100%);
+      padding: 22px;
+      border-radius: 14px;
       text-align: center;
-      padding: 25px;
-      margin-top: 80px;
-      font-size: 20px; /* الفوتر كبر */
+      border: 2px solid rgba(255, 107, 129, 0.15);
+      transition: var(--transition);
+    }
+
+    .feature-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(255, 107, 129, 0.2);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .feature-box h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .feature-box p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* ===== الأزرار ===== */
+    .btn-container {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--white);
+      padding: 15px 36px;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 11px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(255, 107, 129, 0.35);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.25);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(255, 107, 129, 0.45);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--accent) 0%, #00a699 100%);
+      box-shadow: 0 8px 25px rgba(78, 205, 196, 0.35);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 12px 35px rgba(78, 205, 196, 0.45);
+    }
+
+    /* ===== الفوتر ===== */
+    footer {
+      background: linear-gradient(135deg, #ff6b81 0%, #ff5a70 50%, #ffa502 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 30px 15px;
+      font-size: 15px;
+      box-shadow: 0 -5px 20px rgba(255, 107, 129, 0.2);
+      margin-top: auto;
+    }
+
+    /* ===== التجاوب ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      .container {
+        margin: 30px 15px;
+        padding: 35px 22px;
+        border-radius: 14px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      nav a {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      .btn {
+        padding: 12px 28px;
+        font-size: 15px;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        margin: 20px 10px;
+        padding: 25px 16px;
+        border-radius: 12px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      nav {
+        gap: 4px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 7px 10px;
+      }
+
+      p {
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        padding: 11px 24px;
+        font-size: 14px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-container {
+        flex-direction: column;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .feature-box {
+        padding: 18px;
+      }
+
+      .feature-icon {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -77,22 +312,47 @@
   <header>
     <div class="logo">🧸 ToyLand</div>
     <nav>
-      <a href="index.html" class="active">الرئيسية</a>
-      <a href="products.html">المنتجات</a>
-      <a href="about.html">من نحن</a>
-      <a href="contact.html">اتصل بنا</a>
-      <a href="account.html">حسابي</a>
+      <a href="index.html" class="active">🏠 الرئيسية</a>
+      <a href="products.html">🛍️ المنتجات</a>
+      <a href="about.html">ℹ️ من نحن</a>
+      <a href="contact.html">📞 اتصل بنا</a>
+      <a href="account.html">👤 حسابي</a>
     </nav>
   </header>
 
   <div class="container">
-    <h1>مرحباً بكم في متجر ألعاب الأطفال</h1>
+    <h1>🎉 مرحباً بك في ToyLand</h1>
     <p>أفضل الألعاب التعليمية والترفيهية للأطفال من عمر 0 إلى 12 سنة</p>
-    <div>
-      <a href="products.html" class="btn">تسوق الآن</a>
+
+    <div class="features">
+      <div class="feature-box">
+        <div class="feature-icon">🎓</div>
+        <h3>تعليمية</h3>
+        <p>تنمية مهارات الطفل</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🌟</div>
+        <h3>جودة عالية</h3>
+        <p>منتجات آمنة</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🚚</div>
+        <h3>توصيل سريع</h3>
+        <p>آمن وسهل</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">💰</div>
+        <h3>أسعار مميزة</h3>
+        <p>عروض دائمة</p>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <a href="products.html" class="btn">🛒 تسوق الآن</a>
+      <a href="about.html" class="btn btn-secondary">📖 تعرف علينا</a>
     </div>
   </div>
 
-  <footer>© 2026 ToyLand - جميع الحقوق محفوظة</footer>
+  <footer>© 2026 <strong>ToyLand</strong> - جميع الحقوق محفوظة</footer>
 </body>
-</html>           
+</html>
