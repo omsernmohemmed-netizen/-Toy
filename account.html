@@ -285,6 +285,20 @@
       box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.1);
     }
     
+    /* ===== CHECKBOX STYLING ===== */
+    .form-group input[type="checkbox"] {
+      width: auto;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    
+    .form-group label.checkbox-label {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      width: auto;
+    }
+    
     /* ===== STATS SECTION ===== */
     .stats-grid {
       display: grid;
@@ -359,24 +373,24 @@
     }
     
     /* ===== RATING SECTION ===== */
-    .rating {
+    .rating-container {
       display: flex;
       gap: 5px;
       justify-content: center;
       margin: 10px 0;
     }
     
-    .rating span {
+    .rating-container span {
       font-size: 24px;
       cursor: pointer;
       transition: transform 0.2s;
     }
     
-    .rating span:hover {
+    .rating-container span:hover {
       transform: scale(1.2);
     }
     
-    .rating span.active {
+    .rating-container span.active {
       color: #ffc107;
     }
     
@@ -656,31 +670,31 @@
     <div id="reviews" class="section">
       <h2>⭐ تقييماتي</h2>
       
-      <h3>📝 أض�� تقييماً جديداً</h3>
+      <h3>📝 أضف تقييماً جديداً</h3>
       <div class="form-group">
         <label>اختر المنتج:</label>
-        <select>
-          <option>-- اختر منتج --</option>
-          <option>لعبة بازل</option>
-          <option>جهاز ألعاب</option>
-          <option>دمية طرية</option>
+        <select id="productSelect">
+          <option value="">-- اختر منتج --</option>
+          <option value="puzzle">لعبة بازل</option>
+          <option value="console">جهاز ألعاب</option>
+          <option value="doll">دمية طرية</option>
         </select>
       </div>
       
       <div class="form-group">
         <label>التقييم:</label>
-        <div class="rating">
-          <span onclick="rateProduct(1)">⭐</span>
-          <span onclick="rateProduct(2)">⭐</span>
-          <span onclick="rateProduct(3)">⭐</span>
-          <span onclick="rateProduct(4)">⭐</span>
-          <span onclick="rateProduct(5)">⭐</span>
+        <div id="ratingContainer" class="rating-container">
+          <span data-rating="1" onclick="rateProduct(1)">⭐</span>
+          <span data-rating="2" onclick="rateProduct(2)">⭐</span>
+          <span data-rating="3" onclick="rateProduct(3)">⭐</span>
+          <span data-rating="4" onclick="rateProduct(4)">⭐</span>
+          <span data-rating="5" onclick="rateProduct(5)">⭐</span>
         </div>
       </div>
       
       <div class="form-group">
         <label>التعليق:</label>
-        <textarea placeholder="اكتب رأيك في المنتج..." rows="4"></textarea>
+        <textarea id="reviewComment" placeholder="اكتب رأيك في المنتج..." rows="4"></textarea>
       </div>
       
       <button onclick="submitReview()">✅ إرسال التقييم</button>
@@ -709,36 +723,39 @@
       
       <h3 style="margin-top: 30px;">📧 الإشعارات</h3>
       <div class="form-group">
-        <label>
-          <input type="checkbox" checked> تلقي إشعارات البريد الإلكتروني
+        <label class="checkbox-label">
+          <input type="checkbox" id="emailNotif" checked="checked">
+          تلقي إشعارات البريد الإلكتروني
         </label>
       </div>
       
       <div class="form-group">
-        <label>
-          <input type="checkbox" checked> تلقي إشعارات الرسائل النصية
+        <label class="checkbox-label">
+          <input type="checkbox" id="smsNotif" checked="checked">
+          تلقي إشعارات الرسائل النصية
         </label>
       </div>
       
       <div class="form-group">
-        <label>
-          <input type="checkbox"> تلقي العروض الترويجية
+        <label class="checkbox-label">
+          <input type="checkbox" id="promoNotif">
+          تلقي العروض الترويجية
         </label>
       </div>
       
       <h3 style="margin-top: 30px;">🌐 اللغة والتفضيلات</h3>
       <div class="form-group">
         <label>اللغة:</label>
-        <select>
-          <option selected>العربية</option>
+        <select id="languageSelect">
+          <option selected="selected">العربية</option>
           <option>English</option>
         </select>
       </div>
       
       <div class="form-group">
         <label>المنطقة الزمنية:</label>
-        <select>
-          <option selected>توقيت مصر (EET)</option>
+        <select id="timezoneSelect">
+          <option selected="selected">توقيت مصر (EET)</option>
           <option>توقيت السعودية (AST)</option>
           <option>توقيت الإمارات (GST)</option>
         </select>
@@ -749,7 +766,7 @@
       <button class="danger" onclick="deleteAccount()">🗑️ حذف الحساب نهائياً</button>
       
       <div class="btn-group" style="margin-top: 30px;">
-        <button>💾 حفظ التغييرات</button>
+        <button onclick="saveSettings()">💾 حفظ التغييرات</button>
         <button class="secondary" onclick="logout()">🚪 تسجيل الخروج</button>
       </div>
     </div>
@@ -766,6 +783,9 @@
   </footer>
   
   <script>
+    // ===== GLOBAL STATE =====
+    let currentRating = 0;
+    
     // ===== NAVIGATION & SECTION SWITCHING =====
     function showSection(sectionId) {
       // Hide all sections
@@ -782,9 +802,14 @@
       }
     }
     
-    // ===== RATING SYSTEM =====
+    // ===== RATING SYSTEM (FIXED) =====
     function rateProduct(rating) {
-      const stars = document.querySelectorAll('.rating span');
+      currentRating = rating;
+      
+      // Get only the rating stars in the reviews section
+      const ratingContainer = document.getElementById('ratingContainer');
+      const stars = ratingContainer.querySelectorAll('span');
+      
       stars.forEach((star, index) => {
         if (index < rating) {
           star.classList.add('active');
@@ -794,7 +819,7 @@
       });
     }
     
-    // ===== FUNCTIONS =====
+    // ===== FORM FUNCTIONS =====
     function editProfile() {
       alert('🎉 سيتم فتح نموذج تعديل الملف الشخصي');
     }
@@ -808,18 +833,64 @@
     }
     
     function submitReview() {
-      alert('✅ تم إرسال التقييم بنجاح!');
+      const product = document.getElementById('productSelect').value;
+      const rating = currentRating;
+      const comment = document.getElementById('reviewComment').value;
+      
+      if (!product) {
+        alert('⚠️ من فضلك اختر منتج');
+        return;
+      }
+      
+      if (rating === 0) {
+        alert('⚠️ من فضلك أعطِ تقييماً');
+        return;
+      }
+      
+      if (!comment.trim()) {
+        alert('⚠️ من فضلك اكتب تعليقاً');
+        return;
+      }
+      
+      alert('✅ تم إرسال التقييم بنجاح!\n📝 المنتج: ' + product + '\n⭐ التقييم: ' + rating + ' نجوم');
+      
+      // Reset form
+      document.getElementById('productSelect').value = '';
+      document.getElementById('reviewComment').value = '';
+      currentRating = 0;
+      document.getElementById('ratingContainer').querySelectorAll('span').forEach(star => {
+        star.classList.remove('active');
+      });
+    }
+    
+    function saveSettings() {
+      const language = document.getElementById('languageSelect').value;
+      const timezone = document.getElementById('timezoneSelect').value;
+      const emailNotif = document.getElementById('emailNotif').checked;
+      const smsNotif = document.getElementById('smsNotif').checked;
+      const promoNotif = document.getElementById('promoNotif').checked;
+      
+      alert('💾 تم حفظ الإعدادات بنجاح!\n' +
+            '🌐 اللغة: ' + language + '\n' +
+            '⏰ المنطقة الزمنية: ' + timezone + '\n' +
+            '📧 إشعارات البريد: ' + (emailNotif ? 'مفعلة' : 'معطلة') + '\n' +
+            '📱 إشعارات الرسائل: ' + (smsNotif ? 'مفعلة' : 'معطلة') + '\n' +
+            '🎁 العروض الترويجية: ' + (promoNotif ? 'مفعلة' : 'معطلة'));
     }
     
     function deleteAccount() {
-      if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف حسابك نهائياً!')) {
-        alert('🗑️ تم حذف الحساب');
+      if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف حسابك نهائياً!\nهذه العملية لا يمكن التراجع عنها!')) {
+        if (confirm('🗑️ هذه آخر فرصة! هل تريد حقاً حذف حسابك؟')) {
+          alert('🗑️ تم حذف الحساب بنجاح. سيتم تحويلك...');
+          // Redirect or perform delete action
+        }
       }
     }
     
     function logout() {
       if (confirm('🚪 هل تريد تسجيل الخروج؟')) {
         alert('👋 تم تسجيل الخروج بنجاح');
+        // Redirect to login page
       }
     }
   </script>
