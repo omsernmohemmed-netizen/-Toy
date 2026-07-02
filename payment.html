@@ -14,4 +14,124 @@
       line-height: 1.8;
     }
     header{
-      background: linear-gradient(135deg, #ff6b
+      background: linear-gradient(135deg, #ff6b81, #ff4757);
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+    .logo{
+      font-size: 34px; /* شعار كبير */
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    nav a{
+      color: white;
+      text-decoration: none;
+      font-size: 19px; /* روابط كبيرة */
+      margin: 0 8px;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+    nav a.active{
+      background: rgba(255,255,255,0.2);
+    }
+    .container{
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: right;
+    }
+    h1{
+      font-size: 46px; /* عنوان كبير */
+      color: #ff4757;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    p{
+      font-size: 22px; /* النص كبير ومريح */
+      color: #444;
+      margin-bottom: 25px;
+    }
+    .payment-card{
+      background: #fff0f5;
+      border: 2px solid #ff6b81;
+      padding: 25px;
+      border-radius: 15px;
+      margin: 20px 0;
+      font-size: 22px; /* تفاصيل الدفع كبيرة */
+    }
+    .payment-card h2{
+      color: #ff4757;
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+    .payment-card b{
+      font-size: 23px;
+      color: #000;
+    }
+    .note{
+      background: #ffe3e3;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 21px;
+      margin-top: 25px;
+      text-align: center;
+    }
+    footer{
+      background: #ff6b81;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 60px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🧸 ToyLand</div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="products.html">المنتجات</a>
+      <a href="about.html">من نحن</a>
+      <a href="contact.html">اتصل بنا</a>
+      <a href="account.html">حسابي</a>
+      <a href="payment.html" class="active">الدفع</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>طرق الدفع</h1>
+    <p>اختاري طريقة الدفع المناسبة ليك. كلها آمنة وسريعة ✅</p>
+    
+    <div class="payment-card">
+      <h2>1. بنك - Bankak</h2>
+      <b>رقم الحساب:</b> 1234567 <br>
+      <b>الاسم:</b> ToyLand Store <br>
+      <b>ملاحظة:</b> رسلي صورة الاشعار في الواتساب بعد التحويل
+    </div>
+
+    <div class="payment-card">
+      <h2>2. فوري - Fawry</h2>
+      <b>رقم الحساب:</b> 9876543 <br>
+      <b>الاسم:</b> ToyLand Store
+    </div>
+
+    <div class="payment-card">
+      <h2>3. كاش عند الاستلام</h2>
+      <p>متاح فقط داخل أمدرمان والخرطوم. ادفعي لما تستلمي طلبك.</p>
+    </div>
+
+    <div class="note">
+      ⚠️ بعد الدفع رسلي الاشعار في واتساب عشان نأكد طلبك طوالي
+    </div>
+  </div>
+
+  <footer>© 2026 ToyLand - جميع الحقوق محفوظة</footer>
+</body>
+</html>
