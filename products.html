@@ -5,205 +5,489 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المنتجات - ToyLand</title>
   <style>
-    *{margin:0; padding:0; box-sizing:border-box}
-    body{
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #ff6b81;
+      --secondary-color: #ffa502;
+      --dark-color: #ff4757;
+      --light-bg: #fff5f7;
+      --text-color: #333;
+      --light-text: #666;
+      --transition: 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      font-size: 18px;
-      background: #fff5f7;
-      color: #333;
+      font-size: 16px;
+      background: var(--light-bg);
+      color: var(--text-color);
       line-height: 1.8;
     }
-    header{
-      background: #ff6b81;
+
+    /* =================== HEADER =================== */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
       color: white;
       padding: 25px 15px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
-    .logo{
-      font-size: 32px;
+
+    .logo {
+      font-size: 36px;
       font-weight: bold;
       margin-bottom: 15px;
+      letter-spacing: 1px;
     }
-    nav{
+
+    nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
-    nav a{
+
+    nav a {
       color: white;
       text-decoration: none;
-      font-size: 18px;
-      padding: 10px 15px;
-      font-weight: bold;
+      font-size: 15px;
+      padding: 10px 18px;
+      font-weight: 600;
       border-radius: 8px;
       display: inline-block;
-      transition: 0.3s;
+      transition: var(--transition);
+      position: relative;
     }
-    nav a:hover{
-      background: rgba(255,255,255,0.2);
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
     }
-    nav a.active{
-      background: rgba(0,0,0,0.2);
+
+    nav a.active {
+      background: rgba(255, 255, 255, 0.25);
       border-bottom: 3px solid white;
     }
-    .container{
-      max-width: 1000px;
+
+    /* =================== CONTAINER =================== */
+    .container {
+      max-width: 1200px;
       margin: 40px auto;
       padding: 20px;
     }
-    h1{
-      font-size: 44px;
-      color: #ff6b81;
+
+    h1 {
+      font-size: 48px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--light-text);
       margin-bottom: 30px;
-      text-align: center;
+      font-size: 16px;
     }
-    .search-box{
+
+    /* =================== SEARCH BOX =================== */
+    .search-box {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
-    .search-box input{
-      padding: 12px 20px;
-      font-size: 18px;
+
+    .search-box input {
+      padding: 14px 22px;
+      font-size: 16px;
       width: 100%;
-      max-width: 400px;
-      border: 2px solid #ff6b81;
-      border-radius: 10px;
+      max-width: 450px;
+      border: 2px solid var(--primary-color);
+      border-radius: 12px;
       text-align: right;
+      transition: var(--transition);
+      background: white;
+      color: var(--text-color);
     }
-    .filter-btns{
+
+    .search-box input:focus {
+      outline: none;
+      box-shadow: 0 0 15px rgba(255, 107, 129, 0.3);
+      border-color: var(--dark-color);
+      transform: scale(1.02);
+    }
+
+    .search-box input::placeholder {
+      color: #ccc;
+    }
+
+    /* =================== FILTER BUTTONS =================== */
+    .filter-section {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-label {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .filter-btns {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 30px;
     }
-    .filter-btn{
-      padding: 10px 20px;
-      background: #fff;
-      border: 2px solid #ff6b81;
-      color: #ff6b81;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .filter-btn:hover, .filter-btn.active{
-      background: #ff6b81;
-      color: white;
-    }
-    .products-grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-    .product-card{
+
+    .filter-btn {
+      padding: 12px 22px;
       background: white;
-      border-radius: 15px;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-btn:hover {
+      background: var(--light-bg);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(255, 107, 129, 0.2);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+      color: white;
+      box-shadow: 0 6px 16px rgba(255, 107, 129, 0.3);
+    }
+
+    /* =================== PRODUCTS GRID =================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
-    .product-card:hover{
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255,107,129,0.3);
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(255, 107, 129, 0.25);
     }
-    .product-img{
+
+    .product-img {
       width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #ff6b81, #ffa502);
+      height: 220px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 80px;
+      font-size: 90px;
+      position: relative;
+      overflow: hidden;
     }
-    .product-info{
-      padding: 20px;
+
+    .product-img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent);
     }
-    .product-name{
-      font-size: 22px;
-      font-weight: bold;
-      color: #ff4757;
+
+    .product-info {
+      padding: 22px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark-color);
       margin-bottom: 10px;
+      line-height: 1.4;
     }
-    .product-desc{
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 15px;
-      min-height: 40px;
-    }
-    .product-price{
-      font-size: 28px;
-      font-weight: bold;
-      color: #ff6b81;
-      margin-bottom: 15px;
-    }
-    .product-age{
+
+    .product-desc {
       font-size: 14px;
-      background: #fff0f5;
-      color: #ff4757;
-      padding: 8px;
-      border-radius: 6px;
+      color: var(--light-text);
       margin-bottom: 15px;
+      min-height: 45px;
+      line-height: 1.5;
     }
-    .add-to-cart{
-      background: #ff6b81;
-      color: white;
-      padding: 12px 25px;
-      border: none;
+
+    .product-price {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 15px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .product-age {
+      font-size: 13px;
+      background: linear-gradient(135deg, #fff0f5, #ffe4ea);
+      color: var(--dark-color);
+      padding: 10px 12px;
       border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
+      margin-bottom: 18px;
+      font-weight: 600;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .add-to-cart {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
       width: 100%;
-      transition: 0.3s;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .add-to-cart:hover{
-      background: #ff4757;
-      transform: scale(1.05);
+
+    .add-to-cart:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 107, 129, 0.4);
     }
-    .cart-indicator{
+
+    .add-to-cart:active {
+      transform: scale(0.95);
+    }
+
+    /* =================== CART INDICATOR =================== */
+    .cart-indicator {
       position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background: #ff6b81;
+      bottom: 35px;
+      left: 35px;
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
       color: white;
-      padding: 15px 25px;
+      padding: 16px 28px;
       border-radius: 50px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
       cursor: pointer;
       z-index: 100;
+      transition: var(--transition);
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .cart-count{
-      display: inline-block;
+
+    .cart-indicator:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .cart-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: white;
-      color: #ff6b81;
-      width: 25px;
-      height: 25px;
+      color: var(--primary-color);
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      text-align: center;
-      line-height: 25px;
-      margin-right: 10px;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 14px;
     }
-    footer{
-      background: #ff6b81;
+
+    /* =================== FOOTER =================== */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
       color: white;
       text-align: center;
-      padding: 25px;
+      padding: 30px;
       margin-top: 60px;
-      font-size: 18px;
+      font-size: 15px;
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
     }
-    .no-results{
+
+    footer p {
+      margin: 5px 0;
+      font-weight: 500;
+    }
+
+    /* =================== NO RESULTS =================== */
+    .no-results {
       text-align: center;
-      font-size: 24px;
-      color: #ff6b81;
-      padding: 40px;
+      font-size: 28px;
+      color: var(--primary-color);
+      padding: 60px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .no-results p {
+      font-size: 18px;
+      color: var(--light-text);
+      margin-top: 15px;
+    }
+
+    /* =================== NOTIFICATION =================== */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 16px 24px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      z-index: 200;
+      animation: slideIn 0.3s ease forwards;
+      border-left: 4px solid var(--primary-color);
+      max-width: 350px;
+    }
+
+    .notification.success {
+      border-left-color: #2ed573;
+    }
+
+    .notification.success::before {
+      content: '✅ ';
+      color: #2ed573;
+      font-weight: bold;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* =================== RESPONSIVE =================== */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      nav {
+        gap: 5px;
+      }
+
+      nav a {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      .logo {
+        font-size: 28px;
+      }
+
+      .filter-btns {
+        gap: 8px;
+      }
+
+      .filter-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .cart-indicator {
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .product-img {
+        height: 180px;
+        font-size: 70px;
+      }
+
+      .product-price {
+        font-size: 24px;
+      }
+
+      .search-box input {
+        max-width: 100%;
+        font-size: 16px;
+      }
+
+      header {
+        padding: 15px 10px;
+      }
+
+      .logo {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        gap: 4px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
     }
   </style>
 </head>
@@ -222,17 +506,21 @@
 
   <div class="container">
     <h1>🎮 جميع المنتجات</h1>
-    
+    <p class="subtitle">اختاري أفضل الألعاب لأطفالك</p>
+
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="ابحثي عن لعبة...">
     </div>
 
-    <div class="filter-btns">
-      <button class="filter-btn active" data-filter="all">الكل</button>
-      <button class="filter-btn" data-filter="0-2">من 0 لـ 2 سنة</button>
-      <button class="filter-btn" data-filter="3-5">من 3 لـ 5 سنوات</button>
-      <button class="filter-btn" data-filter="6-8">من 6 لـ 8 سنوات</button>
-      <button class="filter-btn" data-filter="9-12">من 9 لـ 12 سنة</button>
+    <div class="filter-section">
+      <label class="filter-label">فلتري حسب الفئة العمرية:</label>
+      <div class="filter-btns">
+        <button class="filter-btn active" data-filter="all">🎯 الكل</button>
+        <button class="filter-btn" data-filter="0-2">👶 من 0 لـ 2 سنة</button>
+        <button class="filter-btn" data-filter="3-5">🧒 من 3 لـ 5 سنوات</button>
+        <button class="filter-btn" data-filter="6-8">👦 من 6 لـ 8 سنوات</button>
+        <button class="filter-btn" data-filter="9-12">🧑 من 9 لـ 12 سنة</button>
+      </div>
     </div>
 
     <div class="products-grid" id="productsGrid">
@@ -240,19 +528,23 @@
     </div>
 
     <div id="noResults" class="no-results" style="display:none;">
-      ❌ لم نجد منتجات تطابق بحثك
+      ❌
+      <p>لم نجد منتجات تطابق بحثك</p>
     </div>
   </div>
 
-  <div class="cart-indicator" onclick="goToCart()">
+  <button class="cart-indicator" onclick="goToCart()">
     <span class="cart-count" id="cartCount">0</span>
     🛒 السلة
-  </div>
+  </button>
 
-  <footer>© 2026 ToyLand - جميع الحقوق محفوظة</footer>
+  <footer>
+    <p>© 2026 ToyLand - جميع الحقوق محفوظة</p>
+    <p>متجر الألعاب الآمنة والموثوقة للأطفال</p>
+  </footer>
 
   <script>
-    // البيانات - المنتجات
+    // =================== DATA ===================
     const products = [
       {
         id: 1,
@@ -296,7 +588,7 @@
       },
       {
         id: 6,
-        name: "دراجة ثلاثية العجلات",
+        name: "دراجة ثلاثية الع��لات",
         category: "3-5",
         price: "₪450",
         emoji: "🚲",
@@ -304,7 +596,7 @@
       },
       {
         id: 7,
-        name: "لعبة الكاراتيه ا��ملاكم",
+        name: "لعبة الكاراتيه والملاكم",
         category: "6-8",
         price: "₪250",
         emoji: "👊",
@@ -336,7 +628,7 @@
       },
       {
         id: 11,
-        name: "مجموعة الروبوت التعليمي",
+        name: "مجموعة الروبوت التعليم��",
         category: "9-12",
         price: "₪800",
         emoji: "🤖",
@@ -353,37 +645,45 @@
     ];
 
     let cart = [];
+    let currentFilter = 'all';
 
-    // عرض المنتجات
+    // =================== DISPLAY PRODUCTS ===================
     function displayProducts(productsToShow = products) {
       const grid = document.getElementById('productsGrid');
       const noResults = document.getElementById('noResults');
-      
-      if(productsToShow.length === 0) {
+
+      if (productsToShow.length === 0) {
         grid.innerHTML = '';
         noResults.style.display = 'block';
         return;
       }
-      
+
       noResults.style.display = 'none';
-      grid.innerHTML = productsToShow.map(product => `
+      grid.innerHTML = productsToShow
+        .map(
+          product => `
         <div class="product-card">
           <div class="product-img">${product.emoji}</div>
           <div class="product-info">
-            <div class="product-name">${product.name}</div>
-            <div class="product-desc">${product.desc}</div>
-            <div class="product-age">
-              👶 ${getCategoryLabel(product.category)}
+            <div>
+              <div class="product-name">${product.name}</div>
+              <div class="product-desc">${product.desc}</div>
+              <div class="product-age">
+                👶 ${getCategoryLabel(product.category)}
+              </div>
+              <div class="product-price">${product.price}</div>
             </div>
-            <div class="product-price">${product.price}</div>
             <button class="add-to-cart" onclick="addToCart(${product.id})">
               أضيفي للسلة 🛒
             </button>
           </div>
         </div>
-      `).join('');
+      `
+        )
+        .join('');
     }
 
+    // =================== GET CATEGORY LABEL ===================
     function getCategoryLabel(cat) {
       const labels = {
         '0-2': 'من 0 لـ 2 سنة',
@@ -394,60 +694,90 @@
       return labels[cat] || 'جميع الأعمار';
     }
 
-    // إضافة للسلة
+    // =================== ADD TO CART ===================
     function addToCart(id) {
       const product = products.find(p => p.id === id);
-      if(product) {
+      if (product) {
         cart.push(product);
         updateCartCount();
-        alert(`✅ تمت إضافة "${product.name}" للسلة!`);
+        showNotification(`✅ تمت إضافة "${product.name}" للسلة!`);
       }
     }
 
-    // تحديث عدد السلة
+    // =================== UPDATE CART COUNT ===================
     function updateCartCount() {
       document.getElementById('cartCount').textContent = cart.length;
     }
 
-    // الذهاب للسلة (يمكن ربطها بصفحة السلة لاحقاً)
+    // =================== GO TO CART ===================
     function goToCart() {
-      if(cart.length === 0) {
-        alert('🛒 السلة فارغة!');
+      if (cart.length === 0) {
+        showNotification('🛒 السلة فارغة!', false);
       } else {
-        alert(`📦 لديكي ${cart.length} منتج في السلة\n\nالمجموع: ${getCartTotal()}`);
+        const total = cart.reduce((sum, item) => {
+          const price = parseInt(item.price.replace('₪', ''));
+          return sum + price;
+        }, 0);
+
+        alert(`📦 لديكي ${cart.length} منتج في السلة\n\nالمجموع: ₪${total}`);
       }
     }
 
-    function getCartTotal() {
-      return cart.length + ' منتج';
+    // =================== SHOW NOTIFICATION ===================
+    function showNotification(message, isSuccess = true) {
+      const notification = document.createElement('div');
+      notification.className = `notification ${isSuccess ? 'success' : ''}`;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.animation = 'slideIn 0.3s ease reverse forwards';
+        setTimeout(() => notification.remove(), 300);
+      }, 2500);
     }
 
-    // البحث
-    document.getElementById('searchInput').addEventListener('input', function(e) {
+    // =================== SEARCH ===================
+    document.getElementById('searchInput').addEventListener('input', function (e) {
       const query = e.target.value.toLowerCase();
-      const filtered = products.filter(p => 
-        p.name.includes(query) || p.desc.includes(query)
-      );
+      let filtered = products;
+
+      if (query.trim()) {
+        filtered = products.filter(p => p.name.includes(query) || p.desc.includes(query));
+      }
+
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === currentFilter);
+      }
+
       displayProducts(filtered);
     });
 
-    // التصفية حسب العمر
+    // =================== FILTER BY AGE ===================
     document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        
-        const filter = this.getAttribute('data-filter');
-        if(filter === 'all') {
-          displayProducts();
+
+        currentFilter = this.getAttribute('data-filter');
+        const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+
+        let filtered = products;
+
+        if (currentFilter === 'all') {
+          filtered = products;
         } else {
-          const filtered = products.filter(p => p.category === filter);
-          displayProducts(filtered);
+          filtered = products.filter(p => p.category === currentFilter);
         }
+
+        if (searchQuery.trim()) {
+          filtered = filtered.filter(p => p.name.includes(searchQuery) || p.desc.includes(searchQuery));
+        }
+
+        displayProducts(filtered);
       });
     });
 
-    // عرض المنتجات عند تحميل الصفحة
+    // =================== INIT ===================
     displayProducts();
   </script>
 </body>
