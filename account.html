@@ -11,155 +11,527 @@
       box-sizing: border-box;
     }
     
-    body {
-      font-family: 'Tahoma', 'Arial', sans-serif;
-      font-size: 16px;
-      background: #fff5f7;
-      color: #333;
-      line-height: 1.8;
+    :root {
+      --primary-color: #ff6b81;
+      --secondary-color: #ff4757;
+      --light-bg: #fff5f7;
+      --text-dark: #333;
+      --text-light: #666;
+      --border-color: #f0f0f0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+      --shadow-lg: 0 4px 15px rgba(0,0,0,0.15);
     }
     
+    body {
+      font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+      font-size: 16px;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.8;
+      transition: background 0.3s ease;
+    }
+    
+    /* ===== HEADER ===== */
     header {
-      background: linear-gradient(135deg, #ff6b81, #ff4757);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
-      padding: 20px;
+      padding: 25px 20px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     
     header h1 {
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 5px;
+      font-weight: 700;
+      animation: slideDown 0.5s ease;
     }
     
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    /* ===== NAVIGATION ===== */
+    nav {
+      background: white;
+      padding: 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 70px;
+      z-index: 99;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    nav li {
+      flex: 1;
+      min-width: 150px;
+    }
+    
+    nav button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: white;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+    
+    nav button:hover {
+      background: var(--light-bg);
+      border-bottom-color: var(--primary-color);
+    }
+    
+    /* ===== CONTAINER ===== */
     .container {
       max-width: 900px;
-      margin: 30px auto;
+      margin: 0 auto;
       padding: 20px;
     }
     
-    .profile-section {
+    /* ===== SECTION STYLING ===== */
+    .section {
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
       margin-bottom: 20px;
+      animation: fadeIn 0.6s ease;
+      display: none;
     }
     
+    .section.active {
+      display: block;
+    }
+    
+    .section h2 {
+      font-size: 26px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--light-bg);
+      padding-bottom: 10px;
+    }
+    
+    .section h3 {
+      font-size: 18px;
+      color: var(--primary-color);
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+    
+    /* ===== PROFILE SECTION ===== */
     .profile-header {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 25px;
       padding-bottom: 20px;
-      border-bottom: 2px solid #f0f0f0;
+      border-bottom: 2px solid var(--border-color);
+      flex-wrap: wrap;
     }
     
     .profile-avatar {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: #ff6b81;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 40px;
+      font-size: 50px;
+      box-shadow: var(--shadow-lg);
+      flex-shrink: 0;
     }
     
     .profile-info h2 {
-      font-size: 24px;
-      margin-bottom: 5px;
-      color: #ff6b81;
+      font-size: 28px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
     }
     
     .profile-info p {
-      color: #666;
-      margin-bottom: 5px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      font-size: 15px;
     }
     
+    .profile-info .member-badge {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    
+    /* ===== BUTTON STYLING ===== */
     .btn-group {
       display: flex;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 12px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
     
-    button {
-      background: #ff6b81;
+    button, .btn {
+      background: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 12px 24px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      transition: background 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
     }
     
-    button:hover {
-      background: #ff4757;
+    button:hover, .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
     
-    button.secondary {
+    button.secondary, .btn.secondary {
       background: #e0e0e0;
-      color: #333;
+      color: var(--text-dark);
     }
     
-    button.secondary:hover {
+    button.secondary:hover, .btn.secondary:hover {
       background: #d0d0d0;
     }
     
+    button.danger, .btn.danger {
+      background: #ff6348;
+    }
+    
+    button.danger:hover, .btn.danger:hover {
+      background: #ff5038;
+    }
+    
+    /* ===== INFO BOX ===== */
     .info-box {
       background: #f9f9f9;
-      padding: 15px;
-      border-right: 4px solid #ff6b81;
+      padding: 18px;
+      border-right: 4px solid var(--primary-color);
       margin-bottom: 15px;
-      border-radius: 4px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .info-box:hover {
+      box-shadow: var(--shadow);
+      transform: translateX(-5px);
     }
     
     .info-box label {
-      font-weight: bold;
-      color: #ff6b81;
+      font-weight: 700;
+      color: var(--primary-color);
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 15px;
     }
     
     .info-box p {
-      color: #666;
+      color: var(--text-light);
+      margin: 0;
     }
     
+    /* ===== FORM STYLING ===== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.1);
+    }
+    
+    /* ===== STATS SECTION ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+    
+    .stat-card .number {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .stat-card .label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    /* ===== PRODUCT GRID ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .product-card {
+      background: var(--light-bg);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .product-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+    }
+    
+    .product-card .icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    .product-card .name {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+    
+    .product-card .price {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    
+    /* ===== RATING SECTION ===== */
+    .rating {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    
+    .rating span {
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .rating span:hover {
+      transform: scale(1.2);
+    }
+    
+    .rating span.active {
+      color: #ffc107;
+    }
+    
+    /* ===== FOOTER ===== */
     footer {
-      background: #333;
+      background: linear-gradient(135deg, #333, #555);
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       margin-top: 40px;
+    }
+    
+    footer p {
+      margin: 5px 0;
+    }
+    
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 24px;
+      }
+      
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .profile-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+      }
+      
+      nav ul {
+        flex-direction: row;
+      }
+      
+      nav li {
+        flex: 1;
+        min-width: 100px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .section {
+        padding: 15px;
+      }
+      
+      header {
+        padding: 15px 10px;
+      }
+      
+      header h1 {
+        font-size: 20px;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+      }
+      
+      button, .btn {
+        width: 100%;
+      }
+      
+      nav button {
+        font-size: 12px;
+        padding: 10px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <h1>🎀 حسابي - ToyLand</h1>
+    <p>أهلاً وسهلاً في عالم الألعاب الممتع</p>
   </header>
   
+  <!-- NAVIGATION -->
+  <nav>
+    <ul>
+      <li><button onclick="showSection('profile')">الملف الشخصي</button></li>
+      <li><button onclick="showSection('purchases')">مشترياتي</button></li>
+      <li><button onclick="showSection('points')">نقاطي</button></li>
+      <li><button onclick="showSection('reviews')">تقييماتي</button></li>
+      <li><button onclick="showSection('settings')">الإعدادات</button></li>
+    </ul>
+  </nav>
+  
   <div class="container">
-    <div class="profile-section">
+    <!-- PROFILE SECTION -->
+    <div id="profile" class="section active">
       <div class="profile-header">
         <div class="profile-avatar">👧</div>
         <div class="profile-info">
           <h2>فاطمة محمد</h2>
-          <p>البريد الإلكتروني: fatima@example.com</p>
-          <p>رقم العضوية: #12345</p>
+          <p>📧 البريد: fatima@example.com</p>
+          <p>🆔 رقم العضوية: #12345</p>
+          <p>📱 الهاتف: +201234567890</p>
+          <span class="member-badge">⭐ عضو ذهبي</span>
           <div class="btn-group">
-            <button>تعديل الملف الشخصي</button>
-            <button class="secondary">تغيير كلمة المرور</button>
+            <button onclick="editProfile()">✏️ تعديل الملف</button>
+            <button class="secondary" onclick="changePassword()">🔐 تغيير كلمة المرور</button>
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="profile-section">
-      <h3 style="margin-bottom: 15px; color: #ff6b81;">معلومات الحساب</h3>
       
+      <h3>📋 معلومات الحساب</h3>
       <div class="info-box">
         <label>🎂 تاريخ الميلاد</label>
         <p>15 مايو 2010</p>
@@ -171,8 +543,8 @@
       </div>
       
       <div class="info-box">
-        <label>📱 رقم الهاتف</label>
-        <p>+201234567890</p>
+        <label>🌍 الدولة</label>
+        <p>مصر</p>
       </div>
       
       <div class="info-box">
@@ -181,27 +553,275 @@
       </div>
     </div>
     
-    <div class="profile-section">
-      <h3 style="margin-bottom: 15px; color: #ff6b81;">🎁 مشترياتك</h3>
-      <p style="color: #666; margin-bottom: 15px;">عدد المشتريات: 12 منتج</p>
-      <button>عرض سجل المشتريات</button>
+    <!-- PURCHASES SECTION -->
+    <div id="purchases" class="section">
+      <h2>🎁 مشترياتي</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">12</div>
+          <div class="label">إجمالي المشتريات</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">850 ر.س</div>
+          <div class="label">إجمالي الإنفاق</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">18</div>
+          <div class="label">المتبقي من العروض</div>
+        </div>
+      </div>
+      
+      <h3>آخر المشتريات</h3>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="icon">🧩</div>
+          <div class="name">لعبة بازل</div>
+          <div class="price">120 ر.س</div>
+        </div>
+        <div class="product-card">
+          <div class="icon">🎮</div>
+          <div class="name">جهاز ألعاب</div>
+          <div class="price">350 ر.س</div>
+        </div>
+        <div class="product-card">
+          <div class="icon">🧸</div>
+          <div class="name">دمية طرية</div>
+          <div class="price">89 ر.س</div>
+        </div>
+        <div class="product-card">
+          <div class="icon">🎯</div>
+          <div class="name">لعبة استهداف</div>
+          <div class="price">75 ر.س</div>
+        </div>
+        <div class="product-card">
+          <div class="icon">🚂</div>
+          <div class="name">قطار مغناطيسي</div>
+          <div class="price">200 ر.س</div>
+        </div>
+        <div class="product-card">
+          <div class="icon">🏰</div>
+          <div class="name">قلعة بناء</div>
+          <div class="price">180 ر.س</div>
+        </div>
+      </div>
+      
+      <div class="btn-group" style="margin-top: 25px;">
+        <button>📋 عرض سجل المشتريات الكامل</button>
+      </div>
     </div>
     
-    <div class="profile-section">
-      <h3 style="margin-bottom: 15px; color: #ff6b81;">⭐ نقاطك</h3>
-      <p style="color: #666; margin-bottom: 15px;">لديك <strong>850 نقطة</strong> يمكنك استخدامها للحصول على عروض خاصة!</p>
-      <button>استعرض العروض</button>
+    <!-- POINTS SECTION -->
+    <div id="points" class="section">
+      <h2>⭐ نقاطي</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">850</div>
+          <div class="label">النقاط الحالية</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">1250</div>
+          <div class="label">النقاط المتراكمة</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">150</div>
+          <div class="label">النقاط المستخدمة</div>
+        </div>
+      </div>
+      
+      <h3>🎁 العروض المتاحة</h3>
+      <div class="info-box">
+        <label>🎉 خصم 10% على المشتريات التالية</label>
+        <p>استخدم 100 نقطة للحصول على هذا العرض</p>
+      </div>
+      
+      <div class="info-box">
+        <label>🚚 شحن مجاني</label>
+        <p>استخدم 200 نقطة للحصول على شحن مجاني</p>
+      </div>
+      
+      <div class="info-box">
+        <label>🎁 هدية خاصة</label>
+        <p>استخدم 300 نقطة للحصول على هدية خاصة</p>
+      </div>
+      
+      <div class="btn-group" style="margin-top: 25px;">
+        <button>🏷️ استعرض جميع العروض</button>
+        <button class="secondary">📊 تاريخ النقاط</button>
+      </div>
     </div>
     
-    <div class="profile-section">
+    <!-- REVIEWS SECTION -->
+    <div id="reviews" class="section">
+      <h2>⭐ تقييماتي</h2>
+      
+      <h3>📝 أض�� تقييماً جديداً</h3>
+      <div class="form-group">
+        <label>اختر المنتج:</label>
+        <select>
+          <option>-- اختر منتج --</option>
+          <option>لعبة بازل</option>
+          <option>جهاز ألعاب</option>
+          <option>دمية طرية</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>التقييم:</label>
+        <div class="rating">
+          <span onclick="rateProduct(1)">⭐</span>
+          <span onclick="rateProduct(2)">⭐</span>
+          <span onclick="rateProduct(3)">⭐</span>
+          <span onclick="rateProduct(4)">⭐</span>
+          <span onclick="rateProduct(5)">⭐</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>التعليق:</label>
+        <textarea placeholder="اكتب رأيك في المنتج..." rows="4"></textarea>
+      </div>
+      
+      <button onclick="submitReview()">✅ إرسال التقييم</button>
+      
+      <h3 style="margin-top: 30px;">📚 تقييماتي السابقة</h3>
+      <div class="info-box">
+        <label>⭐⭐⭐⭐⭐ لعبة بازل - رائعة جداً!</label>
+        <p>منتج عالي الجودة وممتع جداً. أنصح به بشدة.</p>
+      </div>
+      
+      <div class="info-box">
+        <label>⭐⭐⭐⭐ دمية طرية - جميلة</label>
+        <p>الدمية جميلة الشكل ومريحة جداً.</p>
+      </div>
+    </div>
+    
+    <!-- SETTINGS SECTION -->
+    <div id="settings" class="section">
+      <h2>⚙️ الإعدادات</h2>
+      
+      <h3>🔐 الأمان</h3>
       <div class="btn-group">
-        <button class="secondary">تسجيل الخروج</button>
+        <button onclick="changePassword()">🔑 تغيير كلمة المرور</button>
+        <button class="secondary" onclick="enableTwoFA()">🛡️ التحقق الثنائي</button>
+      </div>
+      
+      <h3 style="margin-top: 30px;">📧 الإشعارات</h3>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" checked> تلقي إشعارات البريد الإلكتروني
+        </label>
+      </div>
+      
+      <div class="form-group">
+        <label>
+          <input type="checkbox" checked> تلقي إشعارات الرسائل النصية
+        </label>
+      </div>
+      
+      <div class="form-group">
+        <label>
+          <input type="checkbox"> تلقي العروض الترويجية
+        </label>
+      </div>
+      
+      <h3 style="margin-top: 30px;">🌐 اللغة والتفضيلات</h3>
+      <div class="form-group">
+        <label>اللغة:</label>
+        <select>
+          <option selected>العربية</option>
+          <option>English</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>المنطقة الزمنية:</label>
+        <select>
+          <option selected>توقيت مصر (EET)</option>
+          <option>توقيت السعودية (AST)</option>
+          <option>توقيت الإمارات (GST)</option>
+        </select>
+      </div>
+      
+      <h3 style="margin-top: 30px;">⚠️ حذف الحساب</h3>
+      <p style="color: var(--text-light); margin-bottom: 15px;">انتبه: حذف حسابك لا يمكن التراجع عنه.</p>
+      <button class="danger" onclick="deleteAccount()">🗑️ حذف الحساب نهائياً</button>
+      
+      <div class="btn-group" style="margin-top: 30px;">
+        <button>💾 حفظ التغييرات</button>
+        <button class="secondary" onclick="logout()">🚪 تسجيل الخروج</button>
       </div>
     </div>
   </div>
   
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2024 ToyLand - جميع الحقوق محفوظة</p>
+    <p>
+      <a href="#">سياسة الخصوصية</a> | 
+      <a href="#">شروط الاستخدام</a> | 
+      <a href="#">تواصل معنا</a>
+    </p>
   </footer>
+  
+  <script>
+    // ===== NAVIGATION & SECTION SWITCHING =====
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Show selected section
+      const selectedSection = document.getElementById(sectionId);
+      if (selectedSection) {
+        selectedSection.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    
+    // ===== RATING SYSTEM =====
+    function rateProduct(rating) {
+      const stars = document.querySelectorAll('.rating span');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    
+    // ===== FUNCTIONS =====
+    function editProfile() {
+      alert('🎉 سيتم فتح نموذج تعديل الملف الشخصي');
+    }
+    
+    function changePassword() {
+      alert('🔐 سيتم فتح نموذج تغيير كلمة المرور');
+    }
+    
+    function enableTwoFA() {
+      alert('🛡️ سيتم فتح خيارات التحقق الثنائي');
+    }
+    
+    function submitReview() {
+      alert('✅ تم إرسال التقييم بنجاح!');
+    }
+    
+    function deleteAccount() {
+      if (confirm('⚠️ هل أنت متأكد؟ سيتم حذف حسابك نهائياً!')) {
+        alert('🗑️ تم حذف الحساب');
+      }
+    }
+    
+    function logout() {
+      if (confirm('🚪 هل تريد تسجيل الخروج؟')) {
+        alert('👋 تم تسجيل الخروج بنجاح');
+      }
+    }
+  </script>
 </body>
 </html>
